@@ -1,0 +1,37 @@
+<h1 >List of Tasks</h1>
+
+<button class="btn btn-primary" (click)="onAdd()">Add Task</button>
+<div *ngIf = "Add" >
+    <br>
+<form #addForm = "ngForm" (ngSubmit)= "onSubmit(addForm.value)" >
+<div class="form-group" >
+    <label>Title:</label>
+    <input type="text" class="form-control" name="title" ngModel #titleText (keyup)="isEmpty(titleText.value,textDescription.value,SaveButton)" >
+</div>
+<br>
+<br>
+<div class="form-group" >
+    <div>Description:</div>
+    <textarea rows="10" cols="40" class="form-control" name="description" #textDescription ngModel (keyup)="isEmpty(titleText.value,textDescription.value,SaveButton)"> </textarea>
+ </div>
+<button class="btn btn-primary" type="submit" #SaveButton disabled>Save</button>
+<button class="btn btn-primary" (click)="onCancel()" >Cancel</button>
+</form>
+</div>
+<ol class="list-numbered">
+    <br>
+<li  *ngFor="let index of List" (click)="onSelect(index)">
+ {{index.title|firstCapital}} 
+</li>
+</ol>
+<div *ngIf="view">
+   <app-child  (childEvent)=" outputData($event)" (messageEvent)= "messageData($event)" (deleteEvent)= "onDelete($event)" [data]= "clickedTask" ></app-child>
+</div>
+
+<div *ngIf="messageStatus">
+<div  class="alert alert-success fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        {{message}}
+      </div>
+    </div>
+      

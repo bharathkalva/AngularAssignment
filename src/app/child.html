@@ -1,0 +1,15 @@
+<form #chidForm = "ngForm" (ngSubmit)= "onSubmit(chidForm.value)" >
+    <div class="form-group" >
+        <label>Title:</label>
+        <input type="text" class="form-control" name="title" [(ngModel)] = "data.title"  >
+    </div>
+    <br>
+    <br>
+    <div class="form-group" >
+        <div>Description:</div>
+        <textarea rows="10" cols="40" class="form-control" name="description" [(ngModel)]= "data.description" > </textarea>
+     </div>
+    <button class="btn btn-primary" type="submit" #SaveButton>Save</button>
+    <button class="btn btn-primary" (click)="onDelete(data.id)" type="button" >Delete</button>
+</form>
+    
